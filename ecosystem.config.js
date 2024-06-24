@@ -1,9 +1,15 @@
 module.exports = {
   apps: [
     {
+      name: "Main Rest Server - Consumer",
       script: "build/app.js"
+    },
+    {
+      name: "SQS Consumer",
+      script: "build/app/services/intra-consumer.js"
     }
   ],
+
   deploy: {
     production: {
       user: "SSH_USERNAME",

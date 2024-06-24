@@ -1,6 +1,5 @@
 import dotenv from "dotenv";
 const mongoose = require("mongoose");
-
 dotenv.config();
 
 let connection;
