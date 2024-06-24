@@ -1,12 +1,8 @@
 module.exports = {
   apps: [
     {
-      name: "Main Rest Server - Consumer",
+      name: "Main Rest Server - Publisher",
       script: "build/app.js"
-    },
-    {
-      name: "SQS Consumer",
-      script: "build/app/services/intra-consumer.js"
     }
   ],
 
