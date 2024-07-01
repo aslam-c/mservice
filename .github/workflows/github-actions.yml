@@ -2,7 +2,7 @@ name: Github-CI
 run-name: Continuous Integration Test
 on: [push]
 jobs:
-  check-bats-version:
+  Run-tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
