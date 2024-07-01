@@ -1,4 +1,4 @@
-name: Github CI
+name: Github-CI
 run-name: Continuous Integration Test
 on: [push]
 jobs:
