@@ -16,6 +16,16 @@ app.get("/pub", (req: Request, res: Response) => {
   res.send("Pub server");
 });
 
-app.listen(port, () => {
-  console.log(`[server]: Server is running at http://localhost:${port}`);
+app.get("/products", (req: Request, res: Response) => {
+  res.json({ data: [{ id: 1, name: "product 1" }] });
 });
+
+const currentEnv = process.env.NODE_ENV;
+
+if (currentEnv != "test") {
+  app.listen(port, () => {
+    console.log(`[server]: Server is running at http://localhost:${port}`);
+  });
+}
+
+export default app;
