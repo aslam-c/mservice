@@ -1,5 +1,5 @@
 name: Github CI
-run-name: ${{ github.actor }} testing
+run-name: Continuous Integration Test
 on: [push]
 jobs:
   check-bats-version:
