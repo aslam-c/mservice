@@ -7,11 +7,7 @@ import { connectDB } from "../app/services/mongoConnector";
 
 require("dotenv").config();
 
-connectDB();
-
-beforeAll(async () => {
-  await mongoose.connection.createCollection("last_post");
-});
+beforeAll(async () => {});
 
 /* Connecting to the database before each test. */
 beforeEach(async () => {
