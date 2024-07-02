@@ -16,4 +16,3 @@ jobs:
       - run: npm run test
         env:
           MONGO_TEST_URL: ${{ vars.MONGO_TEST_URL }}
-          MONGO_URL: ${{ vars.MONGO_URL }}
