@@ -1,13 +1,11 @@
 name: Github-CI
 run-name: Continuous Integration Test1
 on: [push]
-env:
-  MONGO_TEST_URL: ${{ vars.MONGO_TEST_URL }}
-  MONGO_URL: ${{ vars.MONGO_URL }}
 
 jobs:
   Run-tests:
     runs-on: ubuntu-latest
+    environment: test
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
