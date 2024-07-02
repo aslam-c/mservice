@@ -30,14 +30,6 @@ describe("GET / Main root", () => {
   });
 });
 
-describe("GET /products", () => {
-  it("Get Products", async () => {
-    const res = await request(app).get("/products");
-    expect(res.statusCode).toBe(200);
-    expect(res.body).toHaveProperty("data");
-  });
-});
-
 describe("POST /products", () => {
   it("Create new product with valid input", async () => {
     const dummyProduct = {
@@ -56,6 +48,15 @@ describe("POST /products", () => {
     expect(res.body).toHaveProperty("data");
     expect(res.body.data).toHaveProperty("name");
     expect(res.body.data.name).toEqual(dummyProduct.name);
+  });
+
+  describe("GET /products", () => {
+    it("Get Products", async () => {
+      const res = await request(app).get("/products");
+      expect(res.statusCode).toBe(200);
+      expect(res.body).toHaveProperty("data");
+      expect(res.body.data).toEqual(expect.any(Array));
+    });
   });
 
   it("Create new product with invalid input", async () => {

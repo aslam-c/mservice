@@ -20,8 +20,11 @@ app.get("/pub", (req: Request, res: Response) => {
   res.send("Pub server");
 });
 
-app.get("/products", (req: Request, res: Response) => {
-  res.json({ data: [{ id: 1, name: "product 1" }] });
+app.get("/products", async (req: Request, res: Response) => {
+  connectDB();
+  const products: any = await product_model.find();
+
+  res.json({ data: [...products] });
 });
 
 app.post("/products", async (req: Request, res: Response) => {
