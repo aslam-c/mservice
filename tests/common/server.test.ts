@@ -71,6 +71,6 @@ describe("POST /products", () => {
 
     expect(res.statusCode).toBe(422);
     expect(res.body).toHaveProperty("msg");
-    // await mongoose.connection.dropCollection("products");
+    await mongoose.connection.dropCollection("products");
   });
 });
