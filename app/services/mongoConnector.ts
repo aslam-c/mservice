@@ -21,7 +21,7 @@ export const connectDB = async () => {
 
     // console.log(`Connecting to MongoDB URL ${updatedMongoDbUrl}...`);
     connection = await mongoose.connect(mongoDbUrl, { maxPoolSize: 50 });
-    console.warn(`Connected to MongoDB URL ${updatedMongoDbUrl}`);
+    console.log(`Connected to MongoDB URL ${updatedMongoDbUrl}`);
     return connection;
   } catch (error) {
     //handle connect error
