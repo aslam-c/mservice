@@ -1,6 +1,8 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import { publishToService2 } from "./app/services/service";
+import { task_model } from "./app/models/task";
+import { connectDB } from "./app/services/mongoConnector";
 
 dotenv.config();
 
@@ -18,6 +20,11 @@ app.get("/pub", (req: Request, res: Response) => {
 
 app.get("/products", (req: Request, res: Response) => {
   res.json({ data: [{ id: 1, name: "product 1" }] });
+});
+
+app.get("/tasker", async (req: Request, res: Response) => {
+  await task_model.create({ payload: "oops " + new Date().valueOf() });
+  res.json({ msg: "seeded" });
 });
 
 const currentEnv = process.env.NODE_ENV;

@@ -2,8 +2,16 @@ import { describe, it, expect, beforeEach, afterEach } from "@jest/globals";
 
 import request from "supertest";
 import app from "../app";
+import mongoose from "mongoose";
+import { connectDB } from "../app/services/mongoConnector";
 
 require("dotenv").config();
+
+connectDB();
+
+beforeAll(async () => {
+  await mongoose.connection.createCollection("last_post");
+});
 
 /* Connecting to the database before each test. */
 beforeEach(async () => {
@@ -13,6 +21,10 @@ beforeEach(async () => {
 /* Closing database connection after each test. */
 afterEach(async () => {
   // await mongoose.connection.close();
+});
+
+afterAll(async () => {
+  // await mongoose.connection.dropDatabase();
 });
 
 describe("GET / Main root", () => {
@@ -29,3 +41,11 @@ describe("GET /products", () => {
     expect(res.body).toHaveProperty("data");
   });
 });
+
+// describe("GET /products", () => {
+//   it("Get Products", async () => {
+//     const res = await request(app).get("/sproducts");
+//     expect(res.statusCode).toBe(200);
+//     expect(res.body).toHaveProperty("data");
+//   });
+// });

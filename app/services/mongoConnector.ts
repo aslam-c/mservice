@@ -8,6 +8,9 @@ export const connectDB = async () => {
   let updatedMongoDbUrl = "";
   try {
     if (mongoDbUrl) {
+      const currentEnv = process.env.NODE_ENV;
+      const isTestMode = currentEnv === "test" ? true : false;
+
       let password = mongoDbUrl.split(":")[2].split("@")[0];
       updatedMongoDbUrl = mongoDbUrl.replace(password, "**************");
     }
@@ -25,6 +28,6 @@ export const connectDB = async () => {
   }
 };
 
-connectDB();
+// connectDB();
 
 export default connection;
