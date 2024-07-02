@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "npx tsc &&cross-env NODE_ENV=test jest --detectOpenHandles ./build/tests/**/*.test.js",
+    "test": "npx tsc && cross-env NODE_ENV=test jest --detectOpenHandles ./build/tests/**/*.test.js",
     "build": "npx tsc",
     "start": "node build/app.js"
   },
