@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=test jest --timeout=30000",
+    "test": "npx tsc &&cross-env NODE_ENV=test jest --detectOpenHandles ./build/tests/**/*.test.js",
     "build": "npx tsc",
     "start": "node build/app.js"
   },
@@ -18,7 +18,8 @@
     "cross-env": "^7.0.3",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "mongoose": "^8.4.3"
+    "mongoose": "^8.4.3",
+    "ts-jest": "^29.1.5"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
@@ -27,7 +28,6 @@
     "@types/supertest": "^6.0.2",
     "jest": "^29.7.0",
     "supertest": "^7.0.0",
-    "ts-jest": "^29.1.5",
     "typescript": "^5.5.2"
   }
 }

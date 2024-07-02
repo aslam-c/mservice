@@ -3,11 +3,13 @@ import dotenv from "dotenv";
 import { publishToService2 } from "./app/services/service";
 import { task_model } from "./app/models/task";
 import { connectDB } from "./app/services/mongoConnector";
+import { product_model } from "./app/models/product";
 
 dotenv.config();
 
 const app: Express = express();
 const port = process.env.APP_PORT || 4000;
+app.use(express.json());
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Publisher server");
@@ -20,6 +22,24 @@ app.get("/pub", (req: Request, res: Response) => {
 
 app.get("/products", (req: Request, res: Response) => {
   res.json({ data: [{ id: 1, name: "product 1" }] });
+});
+
+app.post("/products", async (req: Request, res: Response) => {
+  connectDB();
+  const { price, name } = req.body;
+
+  if (!price || !name) {
+    res.status(422).json({ msg: "Both price and name is required" });
+    return;
+  }
+
+  let createdProduct = new product_model();
+  createdProduct.name = name;
+  createdProduct.price = price;
+
+  let savedProduct: any = await createdProduct.save();
+
+  res.status(201).json({ data: savedProduct?._doc });
 });
 
 app.get("/tasker", async (req: Request, res: Response) => {

@@ -4,20 +4,23 @@ dotenv.config();
 
 let connection;
 export const connectDB = async () => {
-  let mongoDbUrl = process.env.MONGO_URL;
+  let mongoDbUrl: any = process.env.MONGO_URL;
   let updatedMongoDbUrl = "";
   try {
     if (mongoDbUrl) {
       const currentEnv = process.env.NODE_ENV;
       const isTestMode = currentEnv === "test" ? true : false;
 
+      if (isTestMode) {
+        mongoDbUrl = process.env.MONGO_TEST_URL;
+      }
+
       let password = mongoDbUrl.split(":")[2].split("@")[0];
       updatedMongoDbUrl = mongoDbUrl.replace(password, "**************");
     }
 
-    console.log(`Connecting to MongoDB URL ${updatedMongoDbUrl}...`);
+    // console.log(`Connecting to MongoDB URL ${updatedMongoDbUrl}...`);
     connection = await mongoose.connect(mongoDbUrl, { maxPoolSize: 50 });
-
     console.log(`Connected to MongoDB URL ${updatedMongoDbUrl}`);
     return connection;
   } catch (error) {
