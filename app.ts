@@ -4,6 +4,7 @@ import { publishToService2 } from "./app/services/service";
 import { task_model } from "./app/models/task";
 import { connectDB } from "./app/services/mongoConnector";
 import { product_model } from "./app/models/product";
+import router from "./routes";
 
 dotenv.config();
 
@@ -49,6 +50,8 @@ app.get("/tasker", async (req: Request, res: Response) => {
   await task_model.create({ payload: "oops " + new Date().valueOf() });
   res.json({ msg: "seeded" });
 });
+
+app.use("/", router);
 
 const currentEnv = process.env.NODE_ENV;
 
